@@ -1,0 +1,90 @@
+
+
+
+  <!-- =============================================== -->
+  <%- include ('header') %>
+  <%- include ('aside') %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Sửa thông tin người dùng
+        </h1>
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+  
+        <!-- Default box -->
+        <div class="box">
+          <div class="row">
+            <div class="col-md-4">
+              
+              <form action="" method="POST" role="form">
+              
+                <div class="box-body">
+  
+                  <div class="form-group">
+                    <label for="">Tên người dùng</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="full_name" value="<%= cat.full_name %>">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Chức vụ</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="position" value="<%= cat.position %>">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Mã số sinh viên</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="student_id" value="<%= cat.student_id %>">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="email" value="<%= cat.email %>">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Ngày sinh</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="date_of_birth" value="<%= cat.date_of_birth %>">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Trạng thái danh mục</label>
+                    
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="" id="input" value="" checked="checked">
+                        Hiển thị
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="" id="input" value="" checked="checked">
+                        Tạm ẩn 
+                      </label>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Lưu lại</button>
+                  <a href="/infor_users" class="btn btn-primary pull-right">Quay lại</a>
+                </div>
+                
+              </form>
+              
+            </div>
+          </div>
+        </div>
+        <!-- /.box -->
+  
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <%- include ('footer') %>
