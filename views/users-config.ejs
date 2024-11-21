@@ -39,6 +39,8 @@
                     <th>MSSV</th>
                     <th>Position</th>
                     <th>Email</th>
+                    <th>Password</th>
+                    <th>Fingerprint</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,8 +52,10 @@
                   <td scope="row"><%= cat.student_id %></td>
                   <td scope="row"><%= cat.position %></td>
                   <td scope="row"><%= cat.email %></td>
+                  <td scope="row"><%= cat.pass_en == 0 ? 'Không cho phép' : 'Cho phép' %></td>
+                  <td scope="row"><%= cat.fing_en == 0 ? 'Không cho phép' : 'Cho phép' %></td>
                   <td class="text-right">
-                    <a href="" class="btn btn-sm btn-default">Cấu hình</a>
+                    <a href="/config_users_secur/<%= cat.id %>" class="btn btn-sm btn-default">Cấu hình</a>
                   </td>
                 </tr>
               <% }) %>

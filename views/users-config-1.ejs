@@ -1,0 +1,121 @@
+
+
+
+  <!-- =============================================== -->
+  <%- include ('header') %>
+  <%- include ('aside') %>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Cấu hình người dùng
+        </h1>
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+  
+        <!-- Default box -->
+        <div class="box">
+          <div class="row">
+            <div class="col-md-4">
+              
+              <form action="" method="POST" role="form">
+              
+                <div class="box-body">
+  
+                  <div class="form-group">
+                    <label for="">Tên người dùng</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="full_name" value="<%= cat.full_name %>" readonly>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Chức vụ</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="position" value="<%= cat.position %>" readonly>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Mã số sinh viên</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="student_id" value="<%= cat.student_id %>" readonly>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="email" value="<%= cat.email %>" readonly>
+                  </div>
+  
+  
+                  <div class="form-group">
+                    <label for="">Cấu hình quyền truy cập</label>
+
+                    <div class="form-group">
+                      <label for="password">Mật khẩu</label>
+                      <div style="display: flex; align-items: center;">
+                        <input 
+                          type="password" 
+                          class="form-control" 
+                          id="password" 
+                          name="password" 
+                          value="<%= cat.password %>" 
+                          style="flex: 1; margin-right: 10px;"
+                        >
+                        <input 
+                          type="checkbox" 
+                          id="showPassword" 
+                          style="width: auto; margin-left: 5px;"
+                        >
+                        <label for="showPassword" style="margin-left: 5px;">Hiển thị mật khẩu</label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="pass_en" id="input" value="1" checked="checked" <%= cat.pass_en == 1 ? 'checked' : '' %>>
+                          Cho phép 
+                        </label>
+                      </div>
+
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="pass_en" id="input" value="0" checked="checked" <%= cat.pass_en == 1 ? 'checked' : '' %>>
+                          Không cho phép 
+                        </label>
+                      </div>
+
+
+                    </div>
+                    
+                    <script>
+                      // Thay đổi loại trường nhập liệu khi checkbox được bật/tắt
+                      document.getElementById('showPassword').addEventListener('change', function () {
+                        const passwordField = document.getElementById('password');
+                        if (this.checked) {
+                          passwordField.type = 'text'; // Hiển thị mật khẩu
+                        } else {
+                          passwordField.type = 'password'; // Ẩn mật khẩu
+                        }
+                      });
+                    </script>
+                    
+
+                  </div>
+                </div>
+                
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Lưu lại</button>
+                  <a href="/users_config" class="btn btn-primary pull-right">Quay lại</a>
+                </div>
+                
+              </form>
+              
+            </div>
+          </div>
+        </div>
+        <!-- /.box -->
+  
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <%- include ('footer') %>
