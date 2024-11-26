@@ -46,7 +46,7 @@ CREATE TABLE user_config (
 
 
 
-INSERT INTO Users(full_name, student_id, position, email, date_of_birth) VALUES
+INSERT INTO Users(full_name, student_id, position, email) VALUES
 ('Trần Quốc Toàn', '2014785', 'sinh viên', 'toan.tran3112@hcmut.edu.vn'),
 ('Nguyễn Tiến Nhật', '2014846', 'sinh viên', 'nhat.nguyen@hcmut.edu.vn'),
 ('Trịnh Tự Minh', '2014113', 'sinh viên', 'tu.minh3@hcmut.edu.vn'),
