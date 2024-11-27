@@ -207,7 +207,7 @@ app.get('/infor_users', async function(req, res) {
     let rowData = await query(_sql_total);
     let totalRow = rowData[0].total;
     
-    let _limit = 5;
+    let _limit = 20;
     let totalPage = Math.ceil(totalRow/_limit);
     _page = _page > 0 ? Math.floor(_page) : 1;
     _page = _page <= totalPage ? Math.floor(_page) : totalPage;
@@ -326,13 +326,13 @@ app.get('/users_config', async function(req, res) {
     let rowData = await query(_sql_total);
     let totalRow = rowData[0].total;
     
-    let _limit = 5;
+    let _limit = 20;
     let totalPage = Math.ceil(totalRow/_limit);
     _page = _page > 0 ? Math.floor(_page) : 1;
     _page = _page <= totalPage ? Math.floor(_page) : totalPage;
 
     let _start = (_page - 1) * _limit;
-    let sql = "SELECT * FROM users";
+    let sql = "SELECT * FROM users ";
 
     if(_name) {
         sql += " WHERE name LIKE '%" + _name + "%'";
@@ -441,6 +441,37 @@ app.get('/time_manage', async function(req, res) {
     });
 });
 
+
+
+
+//Lấy thông tin thời gian 
+app.get('/api/getAccessTime', (req, res) => {
+    const student_id = req.query.student_id;
+
+    const query = 'SELECT * FROM users WHERE student_id = ?';
+    ketnoi.query(query, [student_id], (err, results) => {
+        if (err) {
+            res.status(500).json({ error: 'Database error' });
+        } else if (results.length > 0) {
+            res.json({
+                allowed_days: results[0].allowed_days,
+                start_time: results[0].start_time,
+                end_time: results[0].end_time,
+            });
+        } else {
+            res.status(404).json({ error: 'Student not found' });
+        }
+    });
+});
+
+
+
+
+
+const cameraURL = 'http://192.168.2.21'; // IP của ESP32-CAM
+app.get('/camera_stream', (req, res) => {
+    res.render('stream-camera', { cameraURL });
+});
 
 
 app.listen(PORT, '0.0.0.0', function() {

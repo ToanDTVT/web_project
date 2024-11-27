@@ -47,7 +47,7 @@
   
   
                   <div class="form-group">
-                    <label for="">Cấu hình quyền truy cập</label>
+                    <label for="">**CẤU HÌNH QUYỀN TRUY CẬP**</label>
 
                     <div class="form-group">
                       <label for="password">Mật khẩu</label>
@@ -97,8 +97,29 @@
                       });
                     </script>
                     
+              
 
                   </div>
+
+                  <div class="form-group">
+                    <label for="">Vị trí vân tay</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field" name="fingerprint" value="<%= cat.fingerprint %>">
+                  </div>
+
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="fing_en" id="input" value="1" checked="checked" <%= cat.fing_en == 1 ? 'checked' : '' %>>
+                      Cho phép 
+                    </label>
+                  </div>
+
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="fing_en" id="input" value="0" checked="checked" <%= cat.fing_en == 0 ? 'checked' : '' %>>
+                      Không cho phép 
+                    </label>
+                  </div>
+
                 </div>
                 
                 <div class="box-footer">
