@@ -13,10 +13,13 @@ CREATE TABLE Users (
     email VARCHAR(100) NOT NULL UNIQUE,        -- Email (duy nhất)
 
     password VARCHAR(255) NOT NULL,            -- Mật khẩu (đã mã hóa)
-    fingerprint BLOB,                          -- Dữ liệu vân tay (nhị phân)
+    fingerprint INT NOT NULL DEFAULT 0,                          -- Dữ liệu vân tay (nhị phân)
 
     pass_en BOOLEAN NOT NULL DEFAULT 0,    -- Cho phép sử dụng mật khẩu (0: Không, 1: Có)
     fing_en BOOLEAN NOT NULL DEFAULT 0,    -- Cho phép sử dụng vân tay (0: Không, 1: Có)
+    allowed_days VARCHAR(50) NOT NULL, -- Ví dụ: "Monday,Tuesday,Friday"
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Ngày tạo bản ghi
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Ngày cập nhật cuối
@@ -43,6 +46,37 @@ CREATE TABLE user_config (
     fing_en BOOLEAN NOT NULL DEFAULT 0,    -- Cho phép sử dụng vân tay (0: Không, 1: Có)
     FOREIGN KEY (student_id) REFERENCES users(student_id) ON DELETE CASCADE
 );
+
+
+
+CREATE TABLE time_management (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id VARCHAR(20) NOT NULL,
+    allowed_days VARCHAR(50) NOT NULL, -- Ví dụ: "Monday,Tuesday,Friday"
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL
+);
+
+
+
+CREATE TABLE command (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    func VARCHAR(10) NOT NULL,
+    fing_register BOOLEAN NOT NULL DEFAULT 0,
+    control_lock BOOLEAN NOT NULL DEFAULT 0
+)
+
+
+
+CREATE TABLE active_users (
+    id INT AUTO_INCREMENT PRIMARY KEY,          -- Mã tự động tăng để định danh duy nhất mỗi dòng
+    full_name VARCHAR(50) NOT NULL,             -- Tên đầy đủ của sinh viên
+    student_id VARCHAR(20) NOT NULL,            -- Mã số sinh viên
+    position VARCHAR(20),                       -- Vị trí (sinh viên, giảng viên, v.v.)
+    login_date DATE NOT NULL,                   -- Ngày đăng nhập
+    login_time TIME NOT NULL,                   -- Thời gian đăng nhập
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Thời điểm thêm vào bảng
+)
 
 
 

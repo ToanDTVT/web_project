@@ -9,7 +9,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dash board
+        ESP32 CONTROL 
       </h1>
     </section>
 
@@ -18,20 +18,25 @@
 
       <!-- Default box -->
       <div class="box">
-        
-        <div class="box-body">
-          
-          <div class="jumbotron">
-            <div class="container">
-              <h1>Camera Stream</h1>
-              <iframe src="<%= cameraURL %>" width="1000" height="640" frameborder="0"></iframe>
-            </div>
+        <div class="row">
+          <div class="col-md-4">
+            
+            <form action="/send-command" method="POST" role="form">
+            
+              <div class="box-body">
+
+                <h1>ESP32 Control Panel</h1>
+                <button type="submit" class="btn btn-primary">Gửi Lệnh</button>
+                
+
+              </div>
+              
+            </form>
+            
+            <p>Status: <%= status %></p>
+
           </div>
-
-          
-
         </div>
-        <!-- /.box-body -->
       </div>
       <!-- /.box -->
 
