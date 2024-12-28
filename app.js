@@ -15,6 +15,8 @@ let activeUsers = [];
 // Kết nối MQTT broker
 const mqttClient = mqtt.connect('mqtt://broker.hivemq.com:1883'); // Hoặc broker khác
 const commandTopic = 'esp32/command';
+const opendoorTopic = 'esp32/command/opendoor';
+const registerfingerprintTopic = 'esp32/command/registerfingerprint';
 const responseTopic = 'esp32/response';
 const MQTT_TOPIC = 'esp32/data';
 mqttClient.on('connect', () => {
@@ -398,7 +400,7 @@ app.get('/time_manage', async function(req, res) {
     let rowData = await query(_sql_total);
     let totalRow = rowData[0].total;
     
-    let _limit = 15;
+    let _limit = 25;
     let totalPage = Math.ceil(totalRow/_limit);
     _page = _page > 0 ? Math.floor(_page) : 1;
     _page = _page <= totalPage ? Math.floor(_page) : totalPage;
@@ -501,15 +503,24 @@ app.get('/mqtt', (req, res) => {
 });
 
 // Gửi lệnh MQTT tới ESP32
-app.post('/send-command', (req, res) => {
+app.post('/send-command-open-door', (req, res) => {
     const command = JSON.stringify({ action: 'start_task' });
-    mqttClient.publish(commandTopic, command, () => {
+    mqttClient.publish(opendoorTopic, command, () => {
       console.log('Command sent to ESP32:', command);
     });
     res.render('mqtt', { status: 'Đã gửi lệnh, chờ ESP32 phản hồi...' });
 });
 
 
+
+app.post('/send-command-register-fingerprint', (req, res) => {
+    const inputData = req.body.inputData; // Dữ liệu nhập từ form
+    const command = JSON.stringify({ mssv: inputData });
+    mqttClient.publish(registerfingerprintTopic, command, () => {
+      console.log('Command sent to ESP32:', command);
+    });
+    res.render('mqtt', { status: 'Đã gửi lệnh, chờ ESP32 phản hồi...' });
+});
 
 
 

@@ -21,16 +21,20 @@
         <div class="row">
           <div class="col-md-4">
             
-            <form action="/send-command" method="POST" role="form">
-            
+            <form action="/send-command-open-door" method="POST" role="form">
               <div class="box-body">
-
-                <h1>ESP32 Control Panel</h1>
+                <h1>Mở cửa</h1>
                 <button type="submit" class="btn btn-primary">Gửi Lệnh</button>
-                
-
               </div>
-              
+            </form>
+
+            <form action="/send-command-register-fingerprint" method="POST" role="form">
+              <div class="box-body">
+                <h1>Đăng ký vân tay</h1>
+                <label for="inputData">Nhập MSSV:</label>
+                <input type="number" id="inputData" name="inputData" required>
+                <button type="submit" class="btn btn-primary">Gửi Lệnh</button>
+              </div>
             </form>
             
             <p>Status: <%= status %></p>
